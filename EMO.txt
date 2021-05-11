@@ -1,0 +1,78 @@
+import nltk
+from nltk.corpus import stopwords
+import re
+sentence=input()
+import pandas as pd
+
+data=pd.read_excel("FIRST_8_EMO.xlsx")
+data_vad=pd.read_excel("VAD.xlsx")
+data.fillna(0, inplace=True)
+datas=pd.get_dummies(data, columns=['emotion'])
+
+datas['emotion_sadness']=datas['emotion_sadness'].multiply(datas['emotion-intensity-score'])
+datas['emotion_anger']=datas['emotion_anger'].multiply(datas['emotion-intensity-score'])
+datas['emotion_anticipation']=datas['emotion_anticipation'].multiply(datas['emotion-intensity-score'])
+datas['emotion_fear']=datas['emotion_fear'].multiply(datas['emotion-intensity-score'])
+
+datas['emotion_joy']=datas['emotion_joy'].multiply(datas['emotion-intensity-score'])
+datas['emotion_disgust']=datas['emotion_disgust'].multiply(datas['emotion-intensity-score'])
+datas['emotion_surprise']=datas['emotion_surprise'].multiply(datas['emotion-intensity-score'])
+datas['emotion_trust']=datas['emotion_trust'].multiply(datas['emotion-intensity-score'])
+
+del datas['emotion-intensity-score']
+
+def clean_text(text):
+    # remove backslash-apostrophe 
+    text = re.sub("\'", "", text) 
+    # remove everything except alphabets 
+    text = re.sub("[^a-zA-Z]"," ",text) 
+    # remove whitespaces 
+    text = ' '.join(text.split()) 
+   
+    text = text.lower() 
+    return text
+
+stop_words = set(stopwords.words('english'))
+
+# function to remove stopwords
+def remove_stopwords(text):
+    no_stopword_text = [w for w in text if not w in stop_words]
+    return ' '.join(no_stopword_text)
+
+
+def score_vad(sentence):
+    corpuso=clean_text(sentence)
+    corpuso=corpuso.split(' ')
+    corpuso=remove_stopwords(corpuso)
+    corpuso=corpuso.split(' ')
+    return data_vad.loc[data_vad['Word'].isin(corpuso)].sum(axis = 0, skipna = True)[1:]
+
+def score_emo(sentence):
+    corpuso=clean_text(sentence)
+    corpuso=corpuso.split(' ')
+    corpuso=remove_stopwords(corpuso)
+    corpuso=corpuso.split(' ')
+    return datas.loc[datas['word'].isin(corpuso)].sum(axis = 0, skipna = True)[1:]
+
+
+from nltk.corpus import wordnet
+
+data=[]
+corpuso=clean_text(sentence)
+corpuso=corpuso.split(' ')
+corpuso=remove_stopwords(corpuso)
+corpuso=corpuso.split(' ')
+
+for i in range(0, len(corpuso)):
+    for syn in wordnet.synsets(corpuso[i]):
+        synonyms = []
+        antonyms = []
+        for l in syn.lemmas():
+            synonyms.append(l.name())
+            if l.antonyms():
+                antonyms.append(l.antonyms()[0].name())
+   
+    k=[synonyms, antonyms]
+    data.append(k)
+
+pd.DataFrame(data, columns=["Synonym", "Antonym"], index=corpuso)

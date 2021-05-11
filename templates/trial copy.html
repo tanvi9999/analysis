@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+     <link rel="stylesheet" href="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.css">
+    <script src="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.js"></script>
+
+    <title>Document</title>
+</head>
+
+<body>
+   
+<div id="main">
+    
+    <div id="first">
+        <h2>Text</h2>
+        <p>{{ message }}</p> 
+        
+    
+    </div>
+    
+    <a href="/"><input type=button id = "go" value="Go back"></a> 
+
+
+    <div id="answer">
+        <h2>RESULTS</h2>
+        <div id = "a1">
+        <h3>VAD</h3>
+        <p>Valence: {{ predictionVAD_Valence }}<p>
+        <p>Arousal: {{ predictionVAD_Arousal }}<p>
+        <p>Dominance: {{ predictionVAD_Dominance }}<p>
+        </div>
+        <div id = "a2">
+        <h3>EMOTIONS</h3>
+        <p>Anger: {{ predictionEMO_anger }}<p>
+        <p>Anticipation: {{ predictionEMO_anticipation }}<p>
+        <p>Disgust: {{ predictionEMO_disgust }}<p>
+        <p>Fear: {{ predictionEMO_fear }}<p>
+        <p>Joy: {{ predictionEMO_joy }}<p>
+        <p>Sadness: {{ predictionEMO_sadness }}<p>
+        <p>Surprise: {{ predictionEMO_surprise }}<p>
+        <p>Trust: {{ predictionEMO_trust }}<p>
+        </div>
+    </div>
+
+    <div class="ct-chart ct-perfect-fourth"></div>
+    <div class="ct-chart2 ct-perfect-fourth"></div>
+</div>
+
+<script>
+    var data1 = {
+  labels: ['Valence', 'Arousal', 'Dominance'],
+
+  series: [
+    [{{ predictionVAD_Valence }}, {{ predictionVAD_Arousal }}, {{ predictionVAD_Dominance }}]
+  ]
+};
+
+ var data2 = {
+  labels: ['Anger', 'Anticipation', 'Disgust', 'Fear', 'Joy', 'Sadness', 'Surprise', 'Trust'],
+
+  series: [
+    [{{ predictionEMO_anger }},
+        {{ predictionEMO_anticipation }},
+        {{ predictionEMO_disgust }},
+        {{ predictionEMO_fear }},
+        {{ predictionEMO_joy }},
+        {{ predictionEMO_sadness }},
+        {{ predictionEMO_surprise }},
+        {{ predictionEMO_trust }}]
+  ]
+};
+
+var options = {
+  width: 500,
+  height: 400
+};
+var options2 = {
+  width: 700,
+  height: 400
+};
+new Chartist.Bar('.ct-chart', data1, options);
+new Chartist.Bar('.ct-chart2', data2, options2);
+</script>
+
+    <style>
+
+        .ct-chart{
+        position: relative;
+        background-color: white;
+        top: 400px;
+        width: 500px;
+        height: 400px;
+        }
+
+        .ct-chart2{
+        position: relative;
+        background-color: white;
+        left: 600px;
+        width: 700px;
+        height: 400px;
+        }
+
+        body {
+            background-color: black;
+            text-align: center;
+            padding: 0px;
+        }
+        
+        
+        #first {
+            color: white;
+            font-size: 20px;
+            text-align: center;
+            width: 50%;
+            height: 300px;
+            float:left;
+            border: 3px solid #fff;
+        }
+
+        #ip {
+            border-radius: 14px;
+            font-size: 20px;
+            text-align: center;
+            width: 600px;
+            height: 300px;
+            
+        }
+
+        #answer{
+            float:right;
+            color: white;
+            width: 40%;
+            height: 385px;
+            border: 3px solid #fff;
+        }
+
+        #a1{
+            float: left;
+            width : 49%;
+        }
+
+        #a2{
+            float: right;
+            width : 49%;
+        }
+        
+        #main{
+            border: 3px solid #fff;
+            padding:20px;
+            height:900px;
+        }
+            </style>
+</body>
+
+</html>

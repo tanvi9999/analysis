@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+
+<body>
+   
+<div id="main">
+    <div id="first">  
+    <form action="{{ url_for('score')}}" method="post">
+      
+        <input id ="ip" name="Text" type="text" >
+        <br><button id="sub" type="submit ">Calculate</button>
+        <br>
+
+
+    </form>
+    </div>
+
+    <div id="answer">
+        <h2>RESULTS</h2>
+    </div>
+
+
+</div>
+
+
+    <style>
+
+        body {
+            background-color: black;
+            text-align: center;
+            padding: 0px;
+        }
+        
+        
+        #first {
+            
+            font-size: 20px;
+            text-align: center;
+            width: 50%;
+            height: 300px;
+            float:left;
+        }
+
+        #ip {
+            border-radius: 14px;
+            font-size: 20px;
+            text-align: center;
+            width: 600px;
+            height: 300px;
+            
+        }
+
+        #answer{
+            float:right;
+            color: white;
+            width: 40%;
+            height: 300px;
+            border: 3px solid #fff;
+        }
+        
+        #main{
+            border: 3px solid #fff;
+            padding:20px;
+            height:800px;
+        }
+            </style>
+</body>
+
+</html>
