@@ -10,10 +10,10 @@
     <title>Document</title>
 </head>
 <body>
-<div class="container">
-    <canvas id="myChart"></canvas>
+<div class="container" style="position: relative; height:40vh; width:80vw">
+    <canvas style="height:40vh; width:80vw" id="myChart"></canvas>
   </div>
-<div class="container">
+<div class="container" style="position: relative; top:50vh; height:40vh; width:80vw">
     <canvas id="yeChart"></canvas>
   </div>
 
@@ -30,7 +30,7 @@
       data:{
         labels:['Anger', 'Anticipation', 'Disgust', 'Fear', 'Joy', 'Sadness', 'Surprise', 'Trust'],
         datasets:[{
-          label:'Population',
+          label:"Plutchik's 8 emotions",
           data:[
             {{ predictionEMO_anger }},
         {{ predictionEMO_anticipation }},

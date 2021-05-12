@@ -15,11 +15,21 @@
    
 <div id="main">
     
+<!--    <div id="first">-->
+<!--        <h2>Text</h2>-->
+<!--        <p>{{ message }}</p> -->
+<!--        -->
+<!--    -->
+<!--    </div>-->
     <div id="first">
-        <h2>Text</h2>
-        <p>{{ message }}</p> 
-        
-    
+    <form action="{{ url_for('score')}}" method="post">
+
+        <input value="{{ message }}" id ="ip" name="Text" type="text" >
+        <br><button id="sub" type="submit ">Calculate</button>
+        <br>
+
+
+    </form>
     </div>
     
     <a href="/"><input type=button id = "go" value="Go back"></a> 

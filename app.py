@@ -9,7 +9,15 @@ app = Flask(__name__)
 
 @app.route('/',methods=['GET'])
 def Home():
-    return render_template('trial.html')
+    return render_template('index.html')
+
+@app.route('/analysis',methods=['GET'])
+def Analysis():
+    return render_template('analysis.html')
+
+@app.route('/summary',methods=['GET'])
+def Summary():
+    return render_template('summary.html')
 
 
 @app.route("/score", methods=['POST'])
@@ -91,9 +99,14 @@ def score():
                 output2[i] = round((output2[i]/sum_emo)*10, 2)
         x = same(data)
         
-    return render_template('result.html', message = " {} ".format(x), predictionVAD_Valence=" {} ".format(output1[0]) ,predictionVAD_Arousal=" {} ".format(output1[1]) , predictionVAD_Dominance=" {} ".format(output1[2])
+    return render_template('emo_result.html', message = " {} ".format(x), predictionVAD_Valence=" {} ".format(output1[0]) ,predictionVAD_Arousal=" {} ".format(output1[1]) , predictionVAD_Dominance=" {} ".format(output1[2])
     , predictionEMO_anger=" {} ".format(output2[0]), predictionEMO_anticipation=" {} ".format(output2[1]), predictionEMO_disgust=" {} ".format(output2[2]), predictionEMO_fear=" {} ".format(output2[3]), predictionEMO_joy=" {} ".format(output2[4]), predictionEMO_sadness=" {} ".format(output2[5]), predictionEMO_surprise=" {} ".format(output2[6]), predictionEMO_trust=" {} ".format(output2[7]) )
     
+@app.route("/summary", methods=['POST'])
+def summary():
+    if request.method == 'POST':
+        message=request.form['Text']
+    return render_template('summ_result.html', message=" {} ".format(message))
 
 if __name__=="__main__":
     app.run(debug=True)
