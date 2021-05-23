@@ -5,17 +5,48 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<!--    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">-->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
     <title>Document</title>
+    <style>
+        *{
+            padding: 0px;
+            margin: 0;
+        }
+       header{
+            top:0;
+            padding: 4vh;
+            text-align: center;
+            position: -webkit-sticky;
+            position: sticky;
+            background-color:#00BFFF;
+            opacity: 0.6;
+            z-index:30;
+            height:15vh;
+        }
+        .container{
+            position: relative;
+            z-index:0;
+            margin-top: 10vh;
+        }
+    </style>
 </head>
 <body>
-<div class="container" style="position: relative; height:40vh; width:80vw">
-    <canvas style="height:40vh; width:80vw" id="myChart"></canvas>
+<header>
+        <nav>
+            FreeLance Writer's WorkSpace Analysis Tool
+        </nav>
+</header>
+<br>
+<div class="container" >
+
+    <div class="vad" style="width: 90%;height:70vh;margin:10vh 0vh;"><canvas id="myChart"></canvas></div>
+    <div class="emo" style="width: 90%;height: 80vh"><canvas id="yeChart"></canvas></div>
   </div>
-<div class="container" style="position: relative; top:50vh; height:40vh; width:80vw">
-    <canvas id="yeChart"></canvas>
-  </div>
+
 
   <script>
     let myChart = document.getElementById('myChart').getContext('2d');
@@ -58,21 +89,35 @@
         }]
       },
       options:{
+        responsive:true,
+        maintainAspectRatio:false,
         title:{
           display:true,
           text:'8 Label Emotion Analysis',
           fontSize:25
         },
+        scales: {
+            xAxes: [{
+                stacked: false,
+                beginAtZero: true,
+                scaleLabel: {
+                    labelString: 'Month'
+                },
+                ticks: {
+                    autoSkip: false
+                }
+            }]
+        },
         legend:{
-          display:true,
-          position:'right',
+          display:false,
+          position:'top',
           labels:{
             fontColor:'#000'
           }
         },
         layout:{
           padding:{
-            left:50,
+            left:0,
             right:0,
             bottom:0,
             top:0
@@ -110,21 +155,25 @@
         }]
       },
       options:{
+        responsive:true,
+        maintainAspectRatio:false,
         title:{
           display:true,
           text:'VAD Analysis',
           fontSize:25
         },
+
         legend:{
           display:true,
-          position:'right',
+          position:'top',
           labels:{
+            boxWidth:20,
             fontColor:'#000'
           }
         },
         layout:{
           padding:{
-            left:50,
+            left:0,
             right:0,
             bottom:0,
             top:0

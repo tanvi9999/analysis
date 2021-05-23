@@ -5,19 +5,201 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js"></script>
     <title>Document</title>
+    <style>
+        *{
+            padding: 0px;
+            margin: 0;
+        }
+        @media screen and (max-width: 530px) {
+        h1{
+            font-size:4vh;
+            }
+        }
+       header{
+            top:0;
+            padding: 4vh;
+            text-align: center;
+            position: -webkit-sticky;
+            position: sticky;
+            background-color:#00BFFF;
+            opacity: 0.6;
+            z-index:30;
+            height:15vh;
+        }
+        .container{
+            padding:4vh;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content:flex-start;
+            border:2px solid gray;
+            position: relative;
+
+            z-index:0;
+        }
+        .analysis, .summary{
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content:flex-start;
+            position: relative;
+
+            width:100%;
+        }
+        .analysis_l{
+            padding: 2vh;
+            box-sizing: border-box;
+            display: inline-block;
+
+            width: 100%;
+            position: relative;
+        }
+        .analysis_r{
+            padding: 0;
+            box-sizing: border-box;
+            display: inline-block;
+            width: 100%;
+            position: relative;
+        }
+        .summary_l{
+            padding: 2vh;
+            box-sizing: border-box;
+            border-top: 2px groove gray;
+            display: inline-block;
+            width: 100%;
+            position: relative;
+        }
+        .summary_r{
+            padding: 2vh;
+            box-sizing: border-box;
+            border: 2px solid gray;
+            display: inline-block;
+            width: 100%;
+            position: relative;
+        }
+        p{
+            margin-bottom: 8vh;
+        }
+        button{
+            position: absolute;
+            width: 50%;
+            bottom: 2vh;
+            right: 25%;
+            left: 25%;
+
+        }
+    </style>
 </head>
 <body>
+    <header>
+        <nav>
+            FreeLance Writer's WorkSpace Analysis Tool
+        </nav>
+    </header>
     <div class="container">
-        <h1>
-            <a href="/analysis"> -> Analysis</a>
-            <br>
-            <a href="/summary"> -> Generate Summary</a>
-        </h1>
+        <div class="analysis">
+
+            <div class="analysis_l">
+            <h1 style="text-align:center"> Analysis</h1>
+                <div class="analysis_r">
+                <canvas id="myChart"></canvas>
+                </div>
+            <p class="lead">Get "scores" of text on the basis of:-
+                <br>
+                <b>A)</b> 8 emotions defined by psychologist named Plutchik. <br>
+                The said emotions are: 'anger', 'anticipation', 'disgust', 'fear', 'joy', 'sadness', 'surprise', and 'trust'.
+                <br><br><br>
+                <b>B)</b> 3 distinguised components of emotions, namely : <br>
+                'Valence', 'Arousal', and 'Dominance'
+                <br><br>
+                <br>'Valence': the pleasantness of a stimulus
+                <br>'Arousal': the intensity of emotion provoked by a stimulus
+                <br>'Dominance': the degree of control exerted by a stimulus
+            </p>
+            <a href="/analysis"><button class="btn btn-primary">Go</button></a>
+
+            </div>
+
+        </div>
+
+        <div class="summary">
+            <div class="summary_l">
+            <h1 style="text-align:center">Generate <br> Summary</h1>
+                <div class="summary_r">
+                </div>
+            <p class="lead">Generate a summary of your text based on word-ranking which chooses the most prominent sentences.</p>
+            <a href="/summary"><button class="btn btn-primary">Go</button></a>
+        </div>
+        </div>
+
+
 
     </div>
 
+    <script>
+        let myChart = document.getElementById('myChart').getContext('2d');
+    // Global Options
+    Chart.defaults.global.defaultFontFamily = 'Lato';
+    Chart.defaults.global.defaultFontSize = 18;
+    Chart.defaults.global.defaultFontColor = '#777';
+        let vad = new Chart(myChart, {
+      type:'pie', // bar, horizontalBar, pie, line, doughnut, radar, polarArea
+      data:{
+        labels:['Valence', 'Arousal', 'Dominance'],
+        datasets:[{
+          label:'Example VAD analysis',
+          data:[
+            20, 50, 30
+          ],
+          //backgroundColor:'green',
+          backgroundColor:[
+            'rgba(255, 99, 132, 0.6)',
+            'rgba(54, 162, 235, 0.6)',
+            'rgba(255, 206, 86, 0.6)',
+            'rgba(75, 192, 192, 0.6)',
+            'rgba(153, 102, 255, 0.6)',
+            'rgba(255, 159, 64, 0.6)',
+            'rgba(255, 99, 132, 0.6)'
+          ],
+          borderWidth:1,
+          borderColor:'#777',
+          hoverBorderWidth:3,
+          hoverBorderColor:'#000'
+        }]
+      },
+      options:{
+        responsive:true,
+        maintainAspectRatio:false,
+        title:{
+          display:true,
+          text:'Example VAD Analysis',
+          fontSize:20
+        },
+        legend:{
+          display:true,
+          position:'top',
 
-</script>
+          labels:{
+            fontColor:'#000',
+            boxWidth: 20,
+          },
+
+        },
+        layout:{
+          padding:{
+            left:0,
+            right:0,
+            bottom:0,
+            top:0
+          }
+        },
+        tooltips:{
+          enabled:true
+        }
+      }
+    });
+    </script>
 </body>
 </html>

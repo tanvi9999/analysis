@@ -6,8 +6,34 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <style>
+        *{
+            padding: 0px;
+            margin: 0;
+        }
+       header{
+            top:0;
+            padding: 4vh;
+            text-align: center;
+            position: -webkit-sticky;
+            position: sticky;
+            background-color:#00BFFF;
+            opacity: 0.6;
+            z-index:30;
+            height:15vh;
+        }
+        .container{
+            position: relative;
+            z-index:0;
+        }
+    </style>
 </head>
 <body>
+    <header>
+        <nav>
+            FreeLance Writer's WorkSpace Analysis Tool
+        </nav>
+    </header>
     <a href="/analysis"> -> Analysis</a>
     <br>
     <a href="/summary"> -> Generate Summary</a>
