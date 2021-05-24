@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Mate+SC&display=swap" rel="stylesheet">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js"></script>
     <title>Document</title>
@@ -15,6 +17,9 @@
         @media screen and (max-width: 530px) {
         h1{
             font-size:4vh;
+            }
+        h2{
+            font-size:3.5vh;
             }
         }
        header{
@@ -34,7 +39,7 @@
             flex-direction: row;
             flex-wrap: wrap;
             justify-content:flex-start;
-            border:2px solid gray;
+
             position: relative;
 
             z-index:0;
@@ -74,10 +79,12 @@
         .summary_r{
             padding: 2vh;
             box-sizing: border-box;
-            border: 2px solid gray;
+            text-align:center;
             display: inline-block;
             width: 100%;
             position: relative;
+            font-family: 'Mate SC', serif;
+            font-size:3.5vh;
         }
         p{
             margin-bottom: 8vh;
@@ -90,12 +97,36 @@
             left: 25%;
 
         }
+
+        @keyframes strike{
+          0%   { width : 0; }
+          100% { width: 100%; }
+        }
+        .strike {
+          position: relative;
+        }
+        .strike::after {
+          content: ' ';
+          position: absolute;
+          top: 50%;
+          left: 0;
+          width: 100%;
+          height: 1px;
+          background: black;
+          animation-name: strike;
+          animation-duration: 4s;
+          animation-timing-function: linear;
+          animation-iteration-count: 1;
+          animation-fill-mode: forwards;
+        }
+        <!--        :::::::::::::::::::::::::: -->
+
     </style>
 </head>
 <body>
     <header>
         <nav>
-            FreeLance Writer's WorkSpace Analysis Tool
+            <h2>FreeLance Writer's WorkSpace Analysis Tool</h2>
         </nav>
     </header>
     <div class="container">
@@ -128,6 +159,7 @@
             <div class="summary_l">
             <h1 style="text-align:center">Generate <br> Summary</h1>
                 <div class="summary_r">
+                    This sentence is important. <br><span class="strike"> That's redundant.</span>
                 </div>
             <p class="lead">Generate a summary of your text based on word-ranking which chooses the most prominent sentences.</p>
             <a href="/summary"><button class="btn btn-primary">Go</button></a>
