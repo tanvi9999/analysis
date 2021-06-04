@@ -4,8 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    
+    <!-- for strike-through -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Mate+SC&display=swap" rel="stylesheet">
+
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js"></script>
     <title>Document</title>
@@ -14,24 +17,30 @@
             padding: 0px;
             margin: 0;
         }
-        @media screen and (max-width: 530px) {
+        @media screen and (max-width: 700px)  {
         h1{
             font-size:4vh;
             }
-        h2{
-            font-size:3.5vh;
+        h3{
+            font-size:2.8vh;
             }
         }
+        @media screen and (max-width: 300px){
+          h3{
+            font-size: 2vh;
+          }
+        } 
        header{
             top:0;
-            padding: 4vh;
+            padding: 3.5vh;
             text-align: center;
             position: -webkit-sticky;
             position: sticky;
             background-color:#00BFFF;
-            opacity: 0.6;
+            /* color:rgb(0, 0, 0); */
+            opacity: 1.0;
             z-index:30;
-            height:15vh;
+            height:12vh;
         }
         .container{
             padding:4vh;
@@ -84,10 +93,13 @@
             width: 100%;
             position: relative;
             font-family: 'Mate SC', serif;
-            font-size:3.5vh;
+            font-size:3.3vh;
         }
-        p{
+        /* p{
             margin-bottom: 8vh;
+        } */
+        .lead{
+          margin-bottom: 8vh;
         }
         button{
             position: absolute;
@@ -119,6 +131,11 @@
           animation-iteration-count: 1;
           animation-fill-mode: forwards;
         }
+        h3{
+          /* font-family: 'Sigmar One', cursive; */
+          font-family: 'Mate SC', serif;
+        }
+        
         <!--        :::::::::::::::::::::::::: -->
 
     </style>
@@ -126,28 +143,28 @@
 <body>
     <header>
         <nav>
-            <h2>FreeLance Writer's WorkSpace Analysis Tool</h2>
+            <h3>FREELANCE WRITER'S WORKSPACE ANALYSIS TOOL</h3>
         </nav>
     </header>
     <div class="container">
         <div class="analysis">
 
             <div class="analysis_l">
-            <h1 style="text-align:center"> Analysis</h1>
+            <h1 style="text-align:center">Emotion Analysis</h1>
                 <div class="analysis_r">
                 <canvas id="myChart"></canvas>
                 </div>
             <p class="lead">Get "scores" of text on the basis of:-
                 <br>
-                <b>A)</b> 8 emotions defined by psychologist named Plutchik. <br>
+                <b>A) 8 emotions defined by psychologist named Plutchik.</b> <br>
                 The said emotions are: 'anger', 'anticipation', 'disgust', 'fear', 'joy', 'sadness', 'surprise', and 'trust'.
-                <br><br><br>
-                <b>B)</b> 3 distinguised components of emotions, namely : <br>
-                'Valence', 'Arousal', and 'Dominance'
                 <br><br>
-                <br>'Valence': the pleasantness of a stimulus
-                <br>'Arousal': the intensity of emotion provoked by a stimulus
-                <br>'Dominance': the degree of control exerted by a stimulus
+                <b>B) 3 distinguised components of emotions, namely : <br>
+                'Valence', 'Arousal', and 'Dominance'</b>
+                
+                <br> ‣  'Valence': the pleasantness of a stimulus
+                <br> ‣  'Arousal': the intensity of emotion provoked by a stimulus
+                <br> ‣  'Dominance': the degree of control exerted by a stimulus
             </p>
             <a href="/analysis"><button class="btn btn-primary">Go</button></a>
 

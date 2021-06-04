@@ -106,7 +106,7 @@ def score():
 def summary():
     if request.method == 'POST':
         message=request.form['Text']
-    return render_template('summ_result.html', message=" {} ".format(message))
+    return render_template('summary.html', message=" {} ".format(message))
 
 if __name__=="__main__":
     app.run(debug=True)

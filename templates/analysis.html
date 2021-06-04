@@ -3,46 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Mate+SC&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="./../static/css/style.css">
+    
     <title>Document</title>
-    <style>
-        *{
-            padding: 0px;
-            margin: 0;
-        }
-       header{
-            top:0;
-            padding: 4vh;
-            text-align: center;
-            position: -webkit-sticky;
-            position: sticky;
-            background-color:#00BFFF;
-            opacity: 0.6;
-            z-index:30;
-            height:15vh;
-        }
-        .container{
-            position: relative;
-            z-index:0;
-        }
-    </style>
+    
 </head>
 <body>
 
-    <header>
-        <nav>
-            FreeLance Writer's WorkSpace Analysis Tool
-        </nav>
-    </header>
+  <header>
+    <nav>
+        <h3>FREELANCE WRITER'S WORKSPACE ANALYSIS TOOL</h3>
+    </nav>
+</header>
 
-    <a href="/analysis"> -> Analysis</a>
-    <br>
-    <a href="/summary"> -> Generate Summary</a>
+    <a href="/summary"><button class="btn btn-dark">>> Generate Summary</button> </a>
 
     <div class="container">
 
-        <h1 class="mb-4">Analysis</h1>
+        <h1 class="mb-4" style="font-family: roboto ">Analysis</h1>
 
       <form action="{{ url_for('score')}}" method="post">
         <div class="form-group">

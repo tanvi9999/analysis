@@ -1,0 +1,39 @@
+*{
+    padding: 0px;
+    margin: 0;
+}
+@media screen and (max-width: 700px)  {
+h1{
+    font-size:4vh;
+    }
+h3{
+    font-size:2.8vh;
+    }
+}
+@media screen and (max-width: 300px){
+  h3{
+    font-size: 2vh;
+  }
+} 
+header{
+    top:0;
+    padding: 3.5vh;
+    text-align: center;
+    position: -webkit-sticky;
+    position: sticky;
+    background-color:#00BFFF;
+    /* color:rgb(0, 0, 0); */
+    opacity: 1.0;
+    z-index:30;
+    height:12vh;
+}
+.container{
+    position: relative;
+    z-index:0;
+    margin-top: 10vh;
+}
+
+h3{
+  /* font-family: 'Sigmar One', cursive; */
+  font-family: 'Mate SC', serif;
+}
