@@ -31,7 +31,7 @@
       <form action="{{ url_for('summary')}}" method="post">
         <div class="form-group">
           <label for="text">Text Here</label>
-          <textarea required name="Text" id="text" onkeyup="autoheight(this)" onclick="autoheight(this)" class="form-control">{{ message }}</textarea>
+          <textarea required name="Text" id="text" onkeyup="autoheight(this)" onclick="autoheight(this)" class="form-control">{{ data }}</textarea>
 
         </div>
           <input button class="btn btn-primary" type="submit">
@@ -39,7 +39,7 @@
         <br><br>
 
         <h1 class="text-muted" style="font-family: roboto ">Summary will show up below:</h1>
-        <p>{{ message }}</p>
+        <p>{{ d }}</p>
 
     </div>
 

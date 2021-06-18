@@ -3,6 +3,7 @@ from flask import Flask, render_template, request, url_for
 import pandas as pd
 import nltk
 from nltk.corpus import stopwords
+from nltk.tokenize import sent_tokenize 
 import re
 
 app = Flask(__name__)
@@ -105,8 +106,69 @@ def score():
 @app.route("/summary", methods=['POST'])
 def summary():
     if request.method == 'POST':
-        message=request.form['Text']
-    return render_template('summary.html', message=" {} ".format(message))
+        data=request.form['Text']
+                
+        def clean_text(text):
+            # remove backslash-apostrophe 
+            text = re.sub("\'", "", text) 
+            # remove everything except alphabets 
+            text = re.sub("[^a-zA-Z]"," ",text) 
+            # remove whitespaces 
+            text = ' '.join(text.split()) 
+            text = text.lower() 
+            return text
+
+    stop_words = set(stopwords.words('english'))
+
+    # function to remove stopwords
+    def remove_stopwords(text):
+        no_stopword_text = [w for w in text if not w in stop_words]
+        return ' '.join(no_stopword_text)
+
+    sentence = data
+    corpuso=clean_text(sentence)
+    corpuso=corpuso.split(' ')
+    corpuso=remove_stopwords(corpuso)
+    corpuso=corpuso.split(' ')
+
+    freqTable = dict() 
+    for word in corpuso: 
+        word = word.lower() 
+        if word in freqTable: 
+            freqTable[word] += 1
+        else: 
+            freqTable[word] = 1
+
+    sentences = sent_tokenize(data) 
+    sentenceValue = dict() 
+    
+    for sentence in sentences: 
+        for word, freq in freqTable.items(): 
+            if word in sentence.lower(): 
+                if sentence in sentenceValue: 
+                    sentenceValue[sentence] += freq 
+                else: 
+                    sentenceValue[sentence] = freq 
+    
+    
+    
+    sumValues = 0
+    for sentence in sentenceValue: 
+        sumValues += sentenceValue[sentence]
+
+    average = int(sumValues / len(sentenceValue)) 
+    
+    # Storing sentences into our summary. 
+    summary = '' 
+
+    for sentence in sentences: 
+        if (sentence in sentenceValue) and (sentenceValue[sentence] > (1.2 * average)): 
+            summary += " " + sentence 
+    if (len(summary)==0):
+        d=data
+    else:
+        d=summary 
+    return render_template('summary.html', data=" {} ".format(data), d=" {} ".format(d))
 
 if __name__=="__main__":
     app.run(debug=True)
