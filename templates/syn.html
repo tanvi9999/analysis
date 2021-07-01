@@ -8,10 +8,6 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="./../static/css/style.css">
 
-    <!-- for strike-through -->
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Mate+SC&display=swap" rel="stylesheet">
-
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Mate+SC&display=swap" rel="stylesheet">
 
@@ -19,7 +15,15 @@
     <title>Document</title>
 
     <style>
-        .summary_l{
+      .analysis_l{
+            padding: 2vh;
+            box-sizing: border-box;
+            display: inline-block;
+
+            width: 100%;
+            position: relative;
+        }
+      .summary_l{
             padding: 2vh;
             box-sizing: border-box;
             
@@ -37,27 +41,7 @@
             font-family: 'Mate SC', serif;
             font-size:3.3vh;
         }
-        @keyframes strike{
-          0%   { width : 0; }
-          100% { width: 100%; }
-        }
-        .strike {
-          position: relative;
-        }
-        .strike::after {
-          content: ' ';
-          position: absolute;
-          top: 50%;
-          left: 0;
-          width: 100%;
-          height: 1px;
-          background: black;
-          animation-name: strike;
-          animation-duration: 4s;
-          animation-timing-function: linear;
-          animation-iteration-count: 1;
-          animation-fill-mode: forwards;
-        }
+        
     </style>
     
 </head>
@@ -67,24 +51,14 @@
         <h3>FREELANCE WRITER'S WORKSPACE ANALYSIS TOOL</h3>
     </nav>
 </header>
-    <a href="/syn"><button class="btn btn-dark"> Antonym/Synonym</button> </a>
-    <a href="/analysis"><button class="btn btn-danger">Emotion Analysis</button> </a>
-    
-  
+<a href="/analysis"><button class="btn btn-danger">Emotion Analysis</button> </a>
+<a href="/summary"><button class="btn btn-warning">Generate Summary</button> </a>
+
     <div class="container">
 
-        <h1 class="mb-4" style="font-family: roboto ">Summarize</h1>
-
-        <div class="summary_l">
-          
-              <div class="summary_r">
-                  This sentence is important. <br><span class="strike"> That's redundant.</span>
-              </div>
-          <p class="lead">Generate a summary of your text based on word-ranking which chooses the most prominent sentences.</p>
-         
-      </div>
+        <h1 class="mb-4" style="font-family: roboto ">Synonyms & Antonyms</h1>
         
-      <form action="{{ url_for('summary')}}" method="post">
+      <form action="{{ url_for('syn')}}" method="post">
         <div class="form-group">
           <label for="text">Text Here</label>
           <textarea required name="Text" id="text" onkeyup="autoheight(this)" onclick="autoheight(this)" class="form-control">{{ data }}</textarea>
@@ -94,8 +68,11 @@
       </form>
         <br><br>
 
-        <h1 class="text-muted" style="font-family: roboto ">Summary will show up below:</h1>
-        <p>{{ d }}</p>
+        <h3 class="text-muted"  style="font-family: roboto ">Synonyms will show up below:</h3>
+        <p>{{ d1 }}</p>
+
+        <h3 class="text-muted" style="font-family: roboto ">Antonyms will show up below:</h3>
+        <p>{{ d2 }}</p>
 
     </div>
 

@@ -12,6 +12,17 @@
     <link rel="stylesheet" href="./../static/css/style.css">
     
     <title>Document</title>
+    <style>
+      .analysis_l{
+            padding: 2vh;
+            box-sizing: border-box;
+            display: inline-block;
+
+            width: 100%;
+            position: relative;
+        }
+              
+    </style>
     
 </head>
 <body>
@@ -21,13 +32,30 @@
         <h3>FREELANCE WRITER'S WORKSPACE ANALYSIS TOOL</h3>
     </nav>
 </header>
-    <a href="/"><button class="btn btn-dark"> Home</button> </a>
+    <a href="/syn"><button class="btn btn-dark"> Antonym/Synonym</button> </a>
+    <a href="/summary"><button class="btn btn-warning">Generate Summary</button> </a>
     
-    <a href="/summary"><button class="btn btn-dark">Generate Summary</button> </a>
 
     <div class="container">
 
         <h1 class="mb-4" style="font-family: roboto ">Analysis</h1>
+
+        <div class="analysis_l">
+                        
+          <p class="lead">Get "scores" of text on the basis of:-
+              <br>
+              <b>A) 8 emotions defined by psychologist named Plutchik.</b> <br>
+              The said emotions are: 'anger', 'anticipation', 'disgust', 'fear', 'joy', 'sadness', 'surprise', and 'trust'.
+              <br><br>
+              <b>B) 3 distinguised components of emotions, namely : <br>
+              'Valence', 'Arousal', and 'Dominance'</b>
+              
+              <br> ‣  'Valence': the pleasantness of a stimulus
+              <br> ‣  'Arousal': the intensity of emotion provoked by a stimulus
+              <br> ‣  'Dominance': the degree of control exerted by a stimulus
+          </p>
+          
+          </div>
 
       <form action="{{ url_for('score')}}" method="post">
         <div class="form-group">

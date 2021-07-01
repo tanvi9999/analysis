@@ -4,6 +4,7 @@ import pandas as pd
 import nltk
 from nltk.corpus import stopwords
 from nltk.tokenize import sent_tokenize 
+from nltk.corpus import wordnet
 import re
 
 app = Flask(__name__)
@@ -20,6 +21,9 @@ def Analysis():
 def Summary():
     return render_template('summary.html')
 
+@app.route('/syn',methods=['GET'])
+def Syn():
+    return render_template('syn.html')
 
 @app.route("/score", methods=['POST'])
 #@app.route("/score")
@@ -169,6 +173,27 @@ def summary():
     else:
         d=summary 
     return render_template('summary.html', data=" {} ".format(data), d=" {} ".format(d))
+
+@app.route("/syn", methods=['POST'])
+
+def syn():
+    if request.method == 'POST':
+        data=request.form['Text']
+
+    synonyms = []
+    antonyms = []
+    for syn in wordnet.synsets(data):
+            
+            for l in syn.lemmas():
+                synonyms.append(l.name())
+                if l.antonyms():
+                    antonyms.append(l.antonyms()[0].name())
+    
+   
+    d1= synonyms
+    d2= antonyms
+
+    return render_template('syn.html', data= " {} ".format(data), d1=" {} ".format(d1), d2=" {} ".format(d2))
 
 if __name__=="__main__":
     app.run(debug=True)
