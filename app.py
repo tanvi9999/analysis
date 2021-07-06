@@ -196,4 +196,4 @@ def syn():
     return render_template('syn.html', data= " {} ".format(data), d1=" {} ".format(d1), d2=" {} ".format(d2))
 
 if __name__=="__main__":
-    app.run(debug=True)
+    app.run(debug=False)
